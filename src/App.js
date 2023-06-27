@@ -28,7 +28,7 @@ class App extends Component {
     const { city, country } = event.target.elements
     let data = null
 
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${city.value},${country.value}&appid=${API_KEY}&units=metric`
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value},${country.value}&appid=${API_KEY}&units=metric`
 
     if (city.value || country.value) {
       console.log (city.value);
