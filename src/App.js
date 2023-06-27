@@ -6,7 +6,7 @@ import Form from './components/Form'
 import Title from './components/Title'
 import Weather from './components/Weather'
 
-const API_KEY = 'aaf9767d18047986612c6149ae3851f3'
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 class App extends Component {
   state = {
@@ -28,7 +28,7 @@ class App extends Component {
     const { city, country } = event.target.elements
     let data = null
 
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${city.value},${country.value}&appid=${API_KEY}&units=metric`
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value},${country.value}&appid=${API_KEY}&units=metric`
 
     if (city.value || country.value) {
       console.log (city.value);
