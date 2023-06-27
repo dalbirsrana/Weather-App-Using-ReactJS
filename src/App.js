@@ -23,7 +23,7 @@ class App extends Component {
   getWeather = async event => {
     event.preventDefault()
 
-    console.log(event.target.elements)
+    // console.log(event.target.elements)
 
     const { city, country } = event.target.elements
     let data = null
