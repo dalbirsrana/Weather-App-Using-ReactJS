@@ -31,33 +31,37 @@ class App extends Component {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value},${country.value}&appid=${API_KEY}&units=metric`
 
     if (city.value || country.value) {
-      console.log (city.value);
+      // console.log (city.value);
       const api_call = await fetch(url);
       data = await api_call.json();
     }
 
-    if (city.value && country.value && data != null && data.cod !== '404' && data.cod !== '400') {
-      this.setState({
-        temperature: data.main.temp,
-        city: data.name,
-        country: data.sys.country,
-        humidity: data.sys.humidity,
-        description: data.weather[0].description,
-        minTemp: data.main.temp_min,
-        maxTemp: data.main.temp_max,
-        error: ''
-      })
-    } else if (data !== null && data.cod !== '') {
-      this.setState({
-        temperature: null,
-        city: null,
-        country: null,
-        humidity: null,
-        description: null,
-        minTemp: null,
-        maxTemp: null,
-        error: data.message
-      })
+    if ( data !== null ) {
+
+      if (data.cod == '200') {
+        this.setState({
+          temperature: data.main.temp,
+          city: data.name,
+          country: data.sys.country,
+          humidity: data.sys.humidity,
+          description: data.weather[0].description,
+          minTemp: data.main.temp_min,
+          maxTemp: data.main.temp_max,
+          error: ''
+        })
+      } else {
+        this.setState({
+          temperature: null,
+          city: null,
+          country: null,
+          humidity: null,
+          description: null,
+          minTemp: null,
+          maxTemp: null,
+          error: data.message
+        })
+      }
+
     } else {
       this.setState({
         temperature: null,
@@ -70,6 +74,7 @@ class App extends Component {
         error: 'Please fill in form fields'
       })
     }
+
   }
 
   render() {
